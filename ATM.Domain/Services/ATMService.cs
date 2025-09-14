@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATM.Domain.Services
 {
-    public class TransactionService : ITransactionService
+    public class ATMService : IATMService
     {
         private static readonly IList<Transaction> _transactionHistory = new List<Transaction>();
         private static IList<Account> _accounts = new List<Account>
@@ -31,7 +31,15 @@ namespace ATM.Domain.Services
         };
 
         /// <summary>
-        /// <see cref="ITransactionService.ProcessAccountTransaction{T}(T)"/>
+        /// <see cref="IATMService.GetAccounts()"/>
+        /// </summary>
+        public IList<Account> GetAccounts()
+        {
+            return _accounts;
+        }
+
+        /// <summary>
+        /// <see cref="IATMService.ProcessAccountTransaction{T}(T)"/>
         /// </summary>
         public IList<Account> ProcessAccountTransaction<T>(T transaction) where T : Transaction
         {
@@ -69,7 +77,7 @@ namespace ATM.Domain.Services
         }
 
         /// <summary>
-        /// <see cref="ITransactionService.GetRecentTransactions"/>
+        /// <see cref="IATMService.GetRecentTransactions"/>
         /// </summary>
         public IList<Transaction> GetRecentTransactions()
         {

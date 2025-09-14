@@ -2,8 +2,14 @@
 
 namespace ATM.Domain.Services
 {
-    public interface ITransactionService
+    public interface IATMService
     {
+        /// <summary>
+        /// Get a list of accounts
+        /// </summary>
+        /// <returns>a list of <see cref="Account"/></returns>
+        IList<Account> GetAccounts();
+
         /// <summary>
         /// Gets a list of the 10 most recent transactions
         /// </summary>

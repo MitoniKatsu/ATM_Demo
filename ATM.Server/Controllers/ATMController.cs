@@ -7,17 +7,33 @@ namespace ATM.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TransactionController : ControllerBase
+    public class ATMController : ControllerBase
     {
-        private readonly ILogger<TransactionController> _logger;
-        private readonly ITransactionService _transactionService;
+        private readonly ILogger<ATMController> _logger;
+        private readonly IATMService _transactionService;
 
-        public TransactionController(ILogger<TransactionController> logger, ITransactionService transactionService)
+        public ATMController(ILogger<ATMController> logger, IATMService transactionService)
         {
             _logger = logger;
             _transactionService = transactionService;
         }
 
+        /// <summary>
+        /// Get a list of active accounts
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("accounts")]
+        public IActionResult GetAccounts()
+        {
+            try
+            {
+                return Ok(_transactionService.GetAccounts());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         /// <summary>
         /// Get a 10 most recent transactions in history
